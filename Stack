@@ -1,0 +1,87 @@
+import java.io.*;
+import java.util.*;
+
+class node 
+{
+    int data;
+    node next;
+}
+class stack
+{  
+    public static void main(String args[])
+    {
+        Scanner s=new Scanner(System.in);
+        node head=null;
+        stackop sop=new stackop();
+        int ch;
+        boolean n=true;
+        while(n)
+        {
+        System.out.println("Enter your choice\n1.Push\nP.pop\n3.Display\n4.Exit\n");
+        ch=s.nextInt();
+        switch(ch)
+        {
+            case 1:
+            System.out.println("Enter a number to push\n");
+            int i=s.nextInt();
+            head= sop.push(head,i);
+            break;
+                
+            case 2:
+            head=sop.pop(head);
+            break;
+                
+            case 3:
+            sop.display(head);
+            break;
+                
+            case 4:
+            n=false;
+            break;
+                
+            default :
+            System.out.println("Invalid option...");
+        }
+        }
+    }
+}
+class stackop
+{
+    public node  push(node head,int i)
+    {
+        node p=new node();
+        p.data=i;
+        p.next=null;
+        if(head==null)
+            head=p;
+        else 
+        {
+            p.next=head;head=p;
+        }
+        return head;
+    }
+    
+    public node pop(node head)
+    {
+        System.out.println("The popped element is\t"+head.data);
+        head =head.next;
+        return head;
+     }
+    
+    public void display(node head)
+    {
+        node temp=head;
+        
+        if(temp==null)
+            System.out.println("Stack is empty\n");
+        else
+        {
+        while(temp.next!=null)
+        {
+            System.out.print(temp.data+"\t");
+            temp=temp.next;
+        }
+             System.out.println(temp.data);
+        }
+    }
+}
