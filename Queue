@@ -1,0 +1,96 @@
+import java.io.*;
+import java.util.*;
+
+class node 
+{
+    int data;
+    node next;
+}
+
+class Queue
+{  
+    public static void main(String args[])
+    {
+        Scanner s=new Scanner(System.in);
+        node head=null;
+        Queueop ss=new Queueop();
+        int ch;
+        boolean n=true;
+        while(n)
+        {
+            System.out.println("Enter your choice\n1.Enqueue\n2.Dequeue\n3.Display\n4.Exit\n");
+            ch=s.nextInt();
+            switch(ch)
+            {
+                case 1:
+                System.out.println("Enter a number\n");
+                int i=s.nextInt();
+                head=ss.enqueue(head,i);
+                break;
+                    
+                case 2:
+                head=ss.dequeue(head);
+                break;
+                    
+                case 3:
+                ss.display(head);
+                break;
+                    
+                case 4:
+                n=false;
+                break;
+                    
+                default :
+                System.out.println("Invalid option...");
+          }
+       }
+    }
+}
+
+class Queueop
+{
+    public node  enqueue(node head,int i)
+    {
+        node p=new node();
+        p.data=i;
+        p.next=null;
+        if(head==null)
+            head=p;
+        else 
+        {
+            node temp=head;
+            while(temp.next!=null)
+                temp=temp.next;
+            
+            temp.next=p;
+        }
+        return head;
+    }
+    
+    public node dequeue(node head)
+    {
+        if(head==null)
+        {
+            System.out.println("The Queue is Empty...\n");
+        }
+        else
+        {
+            node temp=head;
+            head=temp.next;
+            System.out.println("The dequed element is "+temp.data);
+            temp.next=null;
+        }
+        return head;
+     }
+    
+     public void display(node head)
+     {
+        node temp=head;
+        while(temp.next!=null)
+        {
+            System.out.print(temp.data+"\t");
+            temp=temp.next;
+        }
+        System.out.println(temp.data);
+     }
+}
